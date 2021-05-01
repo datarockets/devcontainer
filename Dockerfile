@@ -57,7 +57,7 @@ ARG DOTFILES_REPO="https://github.com/datarockets/dotfiles.git"
 ARG DOTFILES_INSTALL_COMMAND="RCRC=$HOME/.dotfiles/rcrc rcup"
 RUN set -eux; \
     git clone $DOTFILES_REPO ~/.dotfiles; \
-    eval($DOTFILES_INSTALL_COMMAND)
+    eval "${DOTFILES_INSTALL_COMMAND}"
 
 ARG ASDF_VERSION
 RUN set -eux; \
