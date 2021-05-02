@@ -6,7 +6,10 @@ SHELL ["/bin/zsh", "-ic"]
 
 ARG ELIXIR_VERSION
 RUN set -eux; \
-    asdf plugin-add elixir; \
+    asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git; \
+    asdf install erlang 23.3; \
+    asdf global erlang 23.3; \
+    asdf plugin-add elixir ; \
     asdf install elixir ${ELIXIR_VERSION}; \
     asdf global elixir ${ELIXIR_VERSION}
 
