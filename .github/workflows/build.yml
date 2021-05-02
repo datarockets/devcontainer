@@ -47,12 +47,12 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: ./node-ruby
-          build-args:
+          build-args: |
             BASE_TAG=buster
             NODE_VERSION=${{ matrix.node }}
             RUBY_VERSION=${{ matrix.ruby }}
           push: true
-          tags:
+          tags: |
             ghcr.io/${{ github.repository_owner }}/devcontainer:node-${{ matrix.node }}-ruby-${{ matrix.ruby }}-buster
 
   build-elixir-node:
@@ -75,10 +75,10 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: ./elixir-node
-          build-args:
+          build-args: |
             BASE_TAG=buster
             ELIXIR_VERSION=${{ matrix.elixir }}
             NODE_VERSION=${{ matrix.node }}
           push: true
-          tags:
+          tags: |
             ghcr.io/${{ github.repository_owner }}/devcontainer:elixir-${{ matrix.elixir }}-node-${{ matrix.node }}-buster
