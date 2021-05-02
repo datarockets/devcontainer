@@ -46,6 +46,7 @@ jobs:
 
       - uses: docker/build-push-action@v2
         with:
+          context: ./node-ruby
           build-args:
             BASE_TAG=buster
             NODE_VERSION=${{ matrix.node }}
@@ -73,6 +74,7 @@ jobs:
 
       - uses: docker/build-push-action@v2
         with:
+          context: ./elixir-node
           build-args:
             BASE_TAG=buster
             ELIXIR_VERSION=${{ matrix.elixir }}
