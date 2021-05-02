@@ -22,4 +22,31 @@ jobs:
         with:
           push: true
           tags:
-            ghcr.io/${{ github.repository_owner }}/devcontainer:buster-main
+            ghcr.io/${{ github.repository_owner }}/devcontainer:buster
+
+  build-node-ruby:
+    name: Build devcontainer with node and ruby installed
+    needs: build-base
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["16.0.0", "14.16.1", "12.22.1", "10.24.1"]
+        ruby: ["3.0.1", "2.7.3", "2.6.7", "2.5.9"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v2
+        with:
+          build-args:
+            BASE_TAG=buster
+            NODE_VERSION=${{ matrix.node }}
+            RUBY_VERSION=${{ matrix.ruby }}
+          push: true
+          tags:
+            ghcr.io/${{ github.repository_owner }}/devcontainer:node-${{ matrix.node }}-ruby-${{ matrix.ruby }}-buster
