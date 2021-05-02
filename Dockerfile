@@ -59,7 +59,7 @@ RUN set -eux; \
     git clone $DOTFILES_REPO ~/.dotfiles; \
     eval "${DOTFILES_INSTALL_COMMAND}"
 
-ARG ASDF_VERSION="0.8.0"
+ARG ASDF_VERSION="v0.8.0"
 RUN set -eux; \
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION; \
     echo -e ". $HOME/.asdf/asdf.sh" > ~/.zshrc.devcontainer; \
