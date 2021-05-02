@@ -2,11 +2,11 @@ name: Build
 
 on:
   push:
-    branches:
-      - main
     path-ignore:
       - "**.md"
       - "examples/**"
+    branches:
+      - main
 
 jobs:
   build-base:
