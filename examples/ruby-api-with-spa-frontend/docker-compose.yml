@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: config/development/api.Dockerfile
+    volumes:
+      - ./api:/app:cached
+      - vendor_bundle:/app/vendor/bundle
+
+  app:
+    build:
+      context: .
+      dockerfile: config/development/app.Dockerfile
+    volumes:
+      - ./app:/app:cached
+      - node_modules:/app/node_modules
+
+  # vscode devcontainer. We don't start it automatically with docker-compose up.
+  # It should be started by vscode. Run bin/code to launch vscode attached to the
+  # devcontainer.
+  #
+  # If you want to override any of setting for devcontainer e.g. you want to mount
+  # your .gitconfig.local or ~/.ssh/config, please create docker-compose.override.yml:
+  # https://docs.docker.com/compose/extends/#multiple-compose-files
+  #
+  # If you override ~/.zshrc.local, make sure you copy devcontainer content of this
+  # file to your host machine's ~/.zshrc.local
+  devcontainer:
+    profiles: ["dev"]
+    user: dev
+    working_dir: /home/dev/project
+    image: ghcr.io/datarockets/devcontainer:node-14.16.1-ruby-3.0.1-buster
+    command: /bin/sh -c "echo 'devcontainer is started'; while sleep 1000; do :; done"
+    volumes:
+      - ./:/home/dev/project:cached
+      - vendor_bundle:/home/dev/project/api/vendor/bundle
+      - node_modules:/home/dev/project/app/node_modules
+      # Mounting docker socket to container is tricky. When we user Docker for Mac
+      # and mount app directory, mounting happens over NFS and we don't have to
+      # deal with file permissions. But when we mount /var/run/docker.sock on Mac,
+      # we mount it not from our host but from HyperKit VM running Linux with
+      # docker daemon. Therefore all the file permissions are inhereted from this
+      # Linux filesystem. By default, /var/run/docker.sock is owned by root:root
+      # so our `dev` user in container can't access it. In order to mitigate this,
+      # we run `chgrp dev /var/run/docker.sock` when devconiner is started, see
+      # devcontainer.json.
+      # I'm not sure we even need manipulating docker from vscode but let's see
+      # how it goes. We may consider removing this in the future.
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  vendor_bundle: # we put gems and node modules to docker volumes because syncing disk on Docker for Mac is slow
+  node_modules:
