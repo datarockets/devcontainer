@@ -54,31 +54,3 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/devcontainer:node-${{ matrix.node }}-ruby-${{ matrix.ruby }}-buster
-
-  build-elixir-node:
-    name: Build devcontainer with elixir and node installed
-    needs: build-base
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        elixir: ["1.11.4", "1.10.4", "1.9.4", "1.8.2"]
-        node: ["16.0.0", "14.16.1", "12.22.1", "10.24.1"]
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: docker/build-push-action@v2
-        with:
-          context: ./elixir-node
-          build-args: |
-            BASE_TAG=buster
-            ELIXIR_VERSION=${{ matrix.elixir }}
-            NODE_VERSION=${{ matrix.node }}
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/devcontainer:elixir-${{ matrix.elixir }}-node-${{ matrix.node }}-buster
