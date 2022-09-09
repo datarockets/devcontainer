@@ -3,7 +3,7 @@ FROM debian:bullseye
 RUN apt-get update && apt-get -y upgrade
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    curl git sudo locales gnupg zsh \
+    curl git doas locales gnupg zsh \
     apt-transport-https ca-certificates lsb-release
 
 RUN set -eux; \
@@ -47,7 +47,7 @@ RUN apt-get -y install \
 # adding dev user
 RUN set -eux; \
     useradd -s /bin/zsh -m dev; \
-    echo "dev ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev; \
+    echo "permit nopass dev as root" > /etc/doas.conf; \
     mkdir -p /home/dev/.ssh && chown dev:dev /home/dev/.ssh
 
 USER dev
@@ -66,6 +66,6 @@ RUN set -eux; \
     echo -e "[[ -f ~/.zshrc.devcontainer ]] && source ~/.zshrc.devcontainer" \
     > ~/.zshrc.local; \
     # autocompletions for asdf:
-    sudo chmod 775 /usr/local/share/zsh/site-functions; \
-    sudo chown root:dev /usr/local/share/zsh/site-functions; \
+    doas chmod 775 /usr/local/share/zsh/site-functions; \
+    doas chown root:dev /usr/local/share/zsh/site-functions; \
     ln -s $HOME/.asdf/completions/_asdf /usr/local/share/zsh/site-functions/_asdf
