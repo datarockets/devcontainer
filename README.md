@@ -21,7 +21,7 @@ We use official images (e.g. [node](https://hub.docker.com/_/node)) for service 
 
 ## Limitations
 
-We have to use the same OS for service containers and for devcontainer, e.g. Debian Buster. This is because different OS may use different system dependencies which highly influence how we build native parts of our dependencies for different services. E.g. Alpine linux uses musl when Debian uses glibc and gem's native extensions compiled in Alpine-based container aren't runnable in Debian container.
+We have to use the same OS for service containers and for devcontainer, e.g. Debian Bullseye. This is because different OS may use different system dependencies which highly influence how we build native parts of our dependencies for different services. E.g. Alpine linux uses musl when Debian uses glibc and gem's native extensions compiled in Alpine-based container aren't runnable in Debian container.
 
 
 ## Tags
@@ -30,18 +30,18 @@ We have [base container](#base-container-with-dev-tools-buster) with some tools 
 
 Compiling interpreters and compilers takes some CPU time so we also have a number of pre-built containers for our stacks: [Rails API with SPA frontend](#rails-api-with-spa-frontend-node-node_version-ruby-ruby_version-buster).
 
-### Base container with dev tools: `buster`
+### Base container with dev tools: `bullseye`
 
-[ghcr.io/datarockets/devcontainer:buster](https://ghcr.io/datarockets/devcontainer:buster).
+[ghcr.io/datarockets/devcontainer:bullseye](https://ghcr.io/datarockets/devcontainer:bullseye).
 
-It has a number of tools for development installed: sudo, git, vim, tmux, ping. See [`Dockerfile`](Dockerfile) for more information.
+It has a number of tools for development installed: doas, git, vim, tmux, ping. See [`Dockerfile`](Dockerfile) for more information.
 
 You can inherit your own devcontainer from it and install any wanted dependencies you need:
 
 ```Dockerfile
 ARG DOTFILES_REPO="https://github.com/datarockets/dotfiles.git"
 ARG DOTFILES_INSTALL_COMMAND="RCRC=$HOME/.dotfiles/rcrc rcup"
-FROM ghcr.io/datarockets/devcontainer:buster
+FROM ghcr.io/datarockets/devcontainer:bullseye
 
 RUN apt-get install postgresql postgresql-contrib
 
@@ -55,9 +55,9 @@ RUN asdf asdf plugin-add ruby; \
 
 Having postgresql installed in the devcontainer will allow you to use `psql`.
 
-### Rails API with SPA frontend: `node-NODE_VERSION-ruby-RUBY_VERSION-buster`
+### Rails API with SPA frontend: `node-NODE_VERSION-ruby-RUBY_VERSION-bullseye`
 
-[ghcr.io/datarockets/devcontainer:node-14.16.1-ruby-3.0.1-buster](https://ghcr.io/datarockets/devcontainer:node-14.16.1-ruby-3.0.1-buster)
+[ghcr.io/datarockets/devcontainer:node-18.9.0-ruby-3.1.2-bullseye](https://ghcr.io/datarockets/devcontainer:node-18.9.0-ruby-3.1.2-bullseye)
 
 See the [buld.yml](.github/workflows/build.yml#L36-L37) for Ruby and Node versions available.
 
