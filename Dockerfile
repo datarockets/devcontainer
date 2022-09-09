@@ -41,7 +41,7 @@ RUN apt-get -y install \
       # shell:
       rcm tmux \
       # tools
-      vim iputils-ping
+      neovim iputils-ping
 
 
 # adding dev user
