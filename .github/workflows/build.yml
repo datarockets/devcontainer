@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    path-ignore:
+    paths-ignore:
       - "**.md"
       - "examples/**"
     branches:
