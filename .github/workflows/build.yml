@@ -25,7 +25,7 @@ jobs:
         with:
           push: true
           tags:
-            ghcr.io/${{ github.repository_owner }}/devcontainer:buster
+            ghcr.io/${{ github.repository_owner }}/devcontainer:bullseye
 
   build-node-ruby:
     name: Build devcontainer with node and ruby installed
@@ -48,9 +48,9 @@ jobs:
         with:
           context: ./node-ruby
           build-args: |
-            BASE_TAG=buster
+            BASE_TAG=bullseye
             NODE_VERSION=${{ matrix.node }}
             RUBY_VERSION=${{ matrix.ruby }}
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/devcontainer:node-${{ matrix.node }}-ruby-${{ matrix.ruby }}-buster
+            ghcr.io/${{ github.repository_owner }}/devcontainer:node-${{ matrix.node }}-ruby-${{ matrix.ruby }}-bullseye
