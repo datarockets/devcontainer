@@ -1,0 +1,7 @@
+# To avoid duplicates with template's content
+/.claude
+/.opencode
+/.devcontainer
+/bin
+
+/tmp
