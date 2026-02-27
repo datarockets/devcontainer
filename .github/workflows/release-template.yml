@@ -1,0 +1,39 @@
+name: release-template
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - template/**
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check version consistency
+        run: |
+          TEMPLATE_VERSION=$(jq -r '.version' template/devcontainer-template.json)
+          DEVCONTAINER_VERSION=$(cat template/.devcontainer/VERSION | tr -d '[:space:]')
+          if [ "$TEMPLATE_VERSION" != "$DEVCONTAINER_VERSION" ]; then
+            echo "Version mismatch: devcontainer-template.json has '$TEMPLATE_VERSION' but .devcontainer/VERSION has '$DEVCONTAINER_VERSION'"
+            exit 1
+          fi
+          echo "Versions match: $TEMPLATE_VERSION"
+
+      - name: Publish template
+        uses: devcontainers/action@v1
+        with:
+          publish-templates: "true"
+          base-path-to-templates: "./template"
+          generate-docs: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
