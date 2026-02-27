@@ -1,3 +1,5 @@
+*.DS_Store
+
 # To avoid duplicates with template's content
 /.claude
 /.opencode
