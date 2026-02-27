@@ -1,0 +1,9 @@
+#!/bin/zsh
+set -e
+
+if [[ "$IS_DEVCONTAINER" == "1" ]]; then
+  opencode
+else
+  devcontainer up
+  devcontainer exec zsh -c opencode
+fi

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json",
+  "image": "ghcr.io/datarockets/devcontainer:latest",
+  "runArgs": [
+    "--network=host",
+    "--name",
+    "dev-${localWorkspaceFolderBasename}"
+  ],
+  "initializeCommand": "zsh .devcontainer/ensure-mount-sources",
+  "features": {
+    "ghcr.io/datarockets/devcontainer/feature-with-docker": {},
+    "ghcr.io/datarockets/devcontainer/feature-mount-perproject-dotlocal": {},
+    "ghcr.io/datarockets/devcontainer/feature-mount-permachine-caches": {},
+    "ghcr.io/datarockets/devcontainer/feature-mount-dotfiles-local": {}
+  }
+}
