@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+  "id": "feature-with-docker",
+  "name": "feature-with-docker",
+  "version": "1.0.1",
+  "mounts": [
+    {
+      "source": "/var/run/docker.sock",
+      "target": "/var/run/docker.sock",
+      "type": "bind"
+    }
+  ],
+  "entrypoint": "/usr/local/share/with-docker-entrypoint.sh"
+}

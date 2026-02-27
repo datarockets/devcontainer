@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+  "id": "feature-mount-perproject-dotlocal",
+  "name": "feature-mount-perproject-dotlocal",
+  "version": "1.0.0",
+  "mounts": [
+    {
+      "source": "devcontainer_project_${localWorkspaceFolderBasename}_dotlocal_${devcontainerId}",
+      "target": "/home/dev/.local",
+      "type": "volume"
+    }
+  ]
+}

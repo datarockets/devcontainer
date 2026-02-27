@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+  "id": "feature-mount-permachine-caches",
+  "name": "feature-mount-permachine-caches",
+  "version": "1.0.0",
+  "mounts": [
+    {
+      "source": "devcontainer_pnpm_store",
+      "target": "/home/dev/.pnpm-store",
+      "type": "volume"
+    },
+    {
+      "source": "devcontainer_bun_cache",
+      "target": "/home/dev/.bun/install/cache",
+      "type": "volume"
+    }
+  ]
+}
