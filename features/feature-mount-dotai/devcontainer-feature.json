@@ -1,8 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
   "id": "feature-mount-dotai",
   "name": "feature-mount-dotai",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "mounts": [
     {
       "source": "/Users/${localEnv:USER}/.dotai/config/agents",

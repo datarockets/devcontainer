@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
   "id": "feature-with-docker",
   "name": "feature-with-docker",
   "version": "1.0.1",

@@ -5,16 +5,12 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/release-features.yml
       - features/**
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: write
-      pull-requests: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,6 +20,8 @@ jobs:
         with:
           publish-features: "true"
           base-path-to-features: "./features"
-          generate-docs: "true"
+          generate-docs: "false"
+          disable-schema-validation: "true"
+          disable-repo-tagging: "true"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FIX_GITHUB_TOKEN_TO_WRITE_PACKAGES }}

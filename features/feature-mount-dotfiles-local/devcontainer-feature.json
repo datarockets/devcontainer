@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
   "id": "feature-mount-dotfiles-local",
   "name": "feature-mount-dotfiles-local",
   "version": "1.0.1",
