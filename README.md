@@ -27,16 +27,20 @@ Use directly in your `devcontainer.json`:
     // Makes your host docker socket available in the container
     "ghcr.io/datarockets/devcontainer/feature-with-docker": {},
 
-    // Keeps .local directory in container persistent as a volume (project level)
+    // Keeps .local directory in container persistent as a volume (project 
+    // level)
     "ghcr.io/datarockets/devcontainer/feature-mount-perproject-dotlocal": {},
 
     // Keeps some cache files in container persistent as a volume (host level)
     "ghcr.io/datarockets/devcontainer/feature-mount-permachine-caches": {},
 
-    // Binds your overrides of dotfiles to container (dotfiles themselves are already in container)
+    // Binds your overrides of dotfiles to container (dotfiles themselves are 
+    // already in container)
     "ghcr.io/datarockets/devcontainer/feature-mount-dotfiles-local": {},
 
     // Binds your dotai files
+    // It installs dotai on every container start so everything is merged with 
+    // your local ai related configurations and never overrides them.
     "ghcr.io/datarockets/devcontainer/feature-mount-dotai": {},
   },
 }

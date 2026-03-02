@@ -1,21 +1,12 @@
 {
   "id": "feature-mount-dotai",
   "name": "feature-mount-dotai",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "postStartCommand": "env RCRC=$HOME/.dotai/rcrc rcup",
   "mounts": [
     {
-      "source": "/Users/${localEnv:USER}/.dotai/config/agents",
-      "target": "/home/dev/.agents",
-      "type": "bind"
-    },
-    {
-      "source": "/Users/${localEnv:USER}/.dotai/config/claude",
-      "target": "/home/dev/.config/claude",
-      "type": "bind"
-    },
-    {
-      "source": "/Users/${localEnv:USER}/.dotai/config/opencode",
-      "target": "/home/dev/.config/opencode",
+      "source": "/Users/${localEnv:USER}/.dotai",
+      "target": "/home/dev/.dotai",
       "type": "bind"
     }
   ]
