@@ -4,13 +4,14 @@
   "runArgs": [
     "--network=host",
     "--name",
-    "dev-${localWorkspaceFolderBasename}"
+    "dev-${localWorkspaceFolderBasename}",
   ],
   "initializeCommand": "zsh .devcontainer/ensure-mount-sources",
   "features": {
     "ghcr.io/datarockets/devcontainer/feature-with-docker": {},
     "ghcr.io/datarockets/devcontainer/feature-mount-perproject-dotlocal": {},
     "ghcr.io/datarockets/devcontainer/feature-mount-permachine-caches": {},
-    "ghcr.io/datarockets/devcontainer/feature-mount-dotfiles-local": {}
-  }
+    "ghcr.io/datarockets/devcontainer/feature-mount-dotfiles-local": {},
+    "ghcr.io/datarockets/devcontainer/feature-mount-dotai": {},
+  },
 }

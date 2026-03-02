@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+  "id": "feature-mount-dotai",
+  "name": "feature-mount-dotai",
+  "version": "1.0.1",
+  "mounts": [
+    {
+      "source": "/Users/${localEnv:USER}/.dotai/config/agents",
+      "target": "/home/dev/.config/agents",
+      "type": "bind"
+    },
+    {
+      "source": "/Users/${localEnv:USER}/.dotai/config/claude",
+      "target": "/home/dev/.config/claude",
+      "type": "bind"
+    },
+    {
+      "source": "/Users/${localEnv:USER}/.dotai/config/opencode",
+      "target": "/home/dev/.config/opencode",
+      "type": "bind"
+    }
+  ]
+}

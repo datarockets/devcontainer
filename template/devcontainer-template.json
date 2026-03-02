@@ -1,6 +1,5 @@
 {
   "id": "template",
-  "version": "0.0.7",
-  "name": "Main devcontainer setup",
-  "optionalPaths": [".claude/*", ".opencode/*", "bin/*"]
+  "version": "0.0.8",
+  "name": "Main devcontainer setup"
 }
