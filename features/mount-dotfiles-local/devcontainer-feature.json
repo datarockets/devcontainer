@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainerFeature.schema.json",
+  "id": "feature-mount-dotfiles-local",
+  "name": "feature-mount-dotfiles-local",
+  "version": "1.0.1",
+  "mounts": [
+    "type=bind,source=/Users/${localEnv:USER}/.aliases.local,target=/home/dev/.aliases.local,ro",
+    "type=bind,source=/Users/${localEnv:USER}/.gitconfig.local,target=/home/dev/.gitconfig.local,ro",
+    {
+      "source": "/Users/${localEnv:USER}/.config/opencode",
+      "target": "/home/dev/.config/opencode",
+      "type": "bind"
+    },
+    {
+      "source": "/Users/${localEnv:USER}/.config/amp",
+      "target": "/home/dev/.config/amp",
+      "type": "bind"
+    }
+  ]
+}

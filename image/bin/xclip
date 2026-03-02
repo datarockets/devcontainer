@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# copies stdin to clipboard using terminal's OSC 52 escape sequence
+# this enables copying text to clipboard in amp in dev container
+text=$(cat)
+printf "\033]52;c;$(echo -n "${text}" | base64)\007" > /dev/tty
