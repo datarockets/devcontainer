@@ -1,11 +1,11 @@
 {
   "id": "feature-mount-dotai",
   "name": "feature-mount-dotai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "mounts": [
     {
       "source": "/Users/${localEnv:USER}/.dotai/config/agents",
-      "target": "/home/dev/.config/agents",
+      "target": "/home/dev/.agents",
       "type": "bind"
     },
     {
