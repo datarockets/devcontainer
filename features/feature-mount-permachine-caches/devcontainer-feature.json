@@ -1,7 +1,7 @@
 {
   "id": "feature-mount-permachine-caches",
   "name": "feature-mount-permachine-caches",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "mounts": [
     {
       "source": "devcontainer_pnpm_store",
@@ -11,6 +11,11 @@
     {
       "source": "devcontainer_bun_cache",
       "target": "/home/dev/.bun/install/cache",
+      "type": "volume"
+    },
+    {
+      "source": "devcontainer_cache_opencode",
+      "target": "/home/dev/.cache/opencode",
       "type": "volume"
     }
   ]
