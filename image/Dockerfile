@@ -101,6 +101,7 @@ RUN <<-EOF
 	EOF
 
 ENV CLAUDE_CONFIG_DIR="${HOME}/.config/claude"
+ENV OPENCODE_EXPERIMENTAL_MARKDOWN=true
 
 RUN <<-EOF
 	# install agentic tools
