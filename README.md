@@ -38,7 +38,7 @@ Use directly in your `devcontainer.json`:
     // already in container)
     "ghcr.io/datarockets/devcontainer/feature-mount-dotfiles-local": {},
 
-    // Binds your dotai files
+    // Binds your dotai files and other ai related configurations
     // It installs dotai on every container start so everything is merged with 
     // your local ai related configurations and never overrides them.
     "ghcr.io/datarockets/devcontainer/feature-mount-dotai": {},
