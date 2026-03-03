@@ -88,10 +88,12 @@ RUN <<-EOF
 
 	mkdir -p ${HOME}/.dotai
 	mkdir -p ${HOME}/.config
-	mkdir -p ${HOME}/.bun/install/cache
 	mkdir -p ${HOME}/.local
 	mkdir -p ${HOME}/.kube
+	mkdir -p ${HOME}/.bun/install/cache
 	mkdir -p ${HOME}/.pnpm-store
+	mkdir -p ${HOME}/.cache/opencode
+	mkdir -p ${HOME}/.cache/oh-my-opencode
 
 	mkdir -p ~/.docker
 	echo '{"cliPluginsExtraDirs": ["/home/linuxbrew/.linuxbrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
