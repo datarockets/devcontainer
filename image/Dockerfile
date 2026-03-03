@@ -86,6 +86,7 @@ RUN <<-EOF
 
 	brew install oven-sh/bun/bun
 
+	mkdir -p ${HOME}/.dotai
 	mkdir -p ${HOME}/.config
 	mkdir -p ${HOME}/.bun/install/cache
 	mkdir -p ${HOME}/.local
