@@ -56,7 +56,7 @@ RUN <<-EOF
 		docker docker-buildx docker-compose \
 		rcm \
 		tmux neovim openssh \
-		jq fzf \
+		jq fzf ripgrep fd \
 		opentofu gcloud-cli kubectl kubectl-cnpg
 
 	gcloud components install gke-gcloud-auth-plugin
