@@ -1,9 +1,9 @@
 {
   "id": "feature-mount-dotfiles-local",
   "name": "feature-mount-dotfiles-local",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "mounts": [
-    "type=bind,source=/Users/${localEnv:USER}/.aliases.local,target=/home/dev/.aliases.local,ro",
-    "type=bind,source=/Users/${localEnv:USER}/.gitconfig.local,target=/home/dev/.gitconfig.local,ro"
+    "type=bind,source=${localEnv:HOME}/.aliases.local,target=/home/dev/.aliases.local,ro",
+    "type=bind,source=${localEnv:HOME}/.gitconfig.local,target=/home/dev/.gitconfig.local,ro"
   ]
 }
