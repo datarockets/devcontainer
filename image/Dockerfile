@@ -108,7 +108,7 @@ RUN <<-EOF
 	# install agentic tools
 	set -eux
 
-	bun install -g @sourcegraph/amp opencode-ai
+	bun install -g @sourcegraph/amp opencode-ai @anthropic-ai/claude-code
 	EOF
 
 COPY --chmod=755 bin/xclip /usr/local/bin/xclip
