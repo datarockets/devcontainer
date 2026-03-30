@@ -102,14 +102,13 @@ RUN <<-EOF
 	echo 'export PATH="${PATH}:/home/linuxbrew/.linuxbrew/share/google-cloud-sdk/bin:/home/${USERNAME}/.bun/bin"' >> ${HOME}/.zshrc.devcontainer
 	EOF
 
-ENV CLAUDE_CONFIG_DIR="${HOME}/.config/claude"
 ENV OPENCODE_EXPERIMENTAL_MARKDOWN=true
 
 RUN <<-EOF
 	# install agentic tools
 	set -eux
 
-	bun install -g @sourcegraph/amp opencode-ai @anthropic-ai/claude-code
+	bun install -g @sourcegraph/amp opencode-ai
 	EOF
 
 COPY --chmod=755 bin/xclip /usr/local/bin/xclip
