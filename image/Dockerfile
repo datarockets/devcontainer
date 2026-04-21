@@ -10,6 +10,7 @@ RUN <<-EOF
 
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 		build-essential procps curl file git ca-certificates \
+		iptables uidmap \
 		locales sudo zsh
 
 	dpkg-reconfigure -f noninteractive tzdata
@@ -64,7 +65,7 @@ RUN <<-EOF
 
 	sudo -iu linuxbrew brew install \
 		iputils net-tools \
-		docker docker-buildx docker-compose \
+		docker docker-engine docker-buildx docker-compose \
 		rcm \
 		tmux neovim openssh \
 		jq fzf ripgrep fd \
