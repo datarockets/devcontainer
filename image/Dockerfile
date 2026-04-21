@@ -24,6 +24,7 @@ RUN <<-EOF
 
 ARG USERNAME=dev
 ARG HOST_UID=1000
+ARG HOMEBREW_UID=1508
 RUN <<-EOF
 	# add user
 	set -eux
@@ -35,6 +36,9 @@ RUN <<-EOF
 
 	groupadd docker
 	usermod -aG docker ${USERNAME}
+
+	useradd -m -u ${HOMEBREW_UID} linuxbrew
+	chmod g+x,o+x /home/linuxbrew
 	EOF
 
 USER ${USERNAME}
@@ -43,15 +47,22 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 WORKDIR ${HOME}
 
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN <<-EOF
+	# install homebrew
+	set -eux
 
-ENV PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+	sudo -u linuxbrew /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+	echo "test -d /home/linuxbrew/.linuxbrew && eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" | sudo tee /etc/profile.d/homebrew.sh
+	EOF
+
+ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}
 
 RUN <<-EOF
 	# install tools
 	set -eux
 
-	brew install \
+	sudo -iu linuxbrew brew install \
 		iputils net-tools \
 		docker docker-buildx docker-compose \
 		rcm \
@@ -59,7 +70,7 @@ RUN <<-EOF
 		jq fzf ripgrep fd \
 		opentofu gcloud-cli kubectl kubectl-cnpg
 
-	gcloud components install gke-gcloud-auth-plugin
+	sudo -iu linuxbrew gcloud components install gke-gcloud-auth-plugin
 	EOF
 
 ARG DOTFILES_REPO="https://github.com/datarockets/dotfiles.git"
@@ -73,18 +84,22 @@ RUN <<-EOF
 	echo "[[ -f ~/.zshrc.devcontainer ]] && source ~/.zshrc.devcontainer"  > ~/.zshrc.local
 
 	mkdir -p ${HOME}/.bin
-	echo 'export PS1="[dev] ${PS1}"' >> ${HOME}/.zshrc.devcontainer
-	echo 'export PATH="${HOME}/.bin:${HOME}/.local/bin:${PATH}"' >> ${HOME}/.zshrc.devcontainer
+
+	cat <<-EOS >> ${HOME}/.zshrc.devcontainer
+		test -d /home/linuxbrew/.linuxbrew && eval "\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+		export PS1="[dev] \${PS1}"
+		export PATH="\${HOME}/.bin:\${HOME}/.local/bin:\${PATH}"
+		EOS
 	EOF
 
 RUN <<-EOF
 	# install node and prepare HOME
 	set -eux
 
-	brew install node@24
-	brew link node@24
+	sudo -iu linuxbrew brew install node@24
+	sudo -iu linuxbrew brew link node@24
 
-	brew install oven-sh/bun/bun
+	sudo -iu linuxbrew brew install oven-sh/bun/bun
 
 	mkdir -p ${HOME}/.dotai
 	mkdir -p ${HOME}/.config
@@ -111,6 +126,7 @@ RUN <<-EOF
 	bun install -g @sourcegraph/amp opencode-ai @anthropic-ai/claude-code
 	EOF
 
+COPY --chown=dev:dev --chmod=744 bin/brew /home/dev/.bin/brew
 COPY --chmod=755 bin/xclip /usr/local/bin/xclip
 
 ENV IS_DEVCONTAINER="1"
