@@ -101,6 +101,7 @@ RUN <<-EOF
 	sudo -iu linuxbrew brew link node@26
 
 	sudo -iu linuxbrew brew install oven-sh/bun/bun
+	sudo -iu linuxbrew brew install pnpm
 
 	mkdir -p ${HOME}/.dotai
 	mkdir -p ${HOME}/.config
