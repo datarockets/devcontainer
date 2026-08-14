@@ -119,12 +119,16 @@ RUN <<-EOF
 	EOF
 
 ENV OPENCODE_EXPERIMENTAL_MARKDOWN=true
+ENV CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE=1
 
 RUN <<-EOF
 	# install agentic tools
 	set -eux
 
-	bun install -g @sourcegraph/amp opencode-ai @anthropic-ai/claude-code
+	sudo -iu linuxbrew brew install \
+		ampcode/tap/ampcode \
+		anomalyco/tap/opencode \
+		claude-code
 	EOF
 
 COPY --chown=dev:dev --chmod=744 bin/brew /home/dev/.bin/brew
