@@ -97,8 +97,8 @@ RUN <<-EOF
 	# install node and prepare HOME
 	set -eux
 
-	sudo -iu linuxbrew brew install node@24
-	sudo -iu linuxbrew brew link node@24
+	sudo -iu linuxbrew brew install node@26
+	sudo -iu linuxbrew brew link node@26
 
 	sudo -iu linuxbrew brew install oven-sh/bun/bun
 
