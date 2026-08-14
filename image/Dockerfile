@@ -88,7 +88,7 @@ RUN <<-EOF
 
 	cat <<-EOS >> ${HOME}/.zshrc.devcontainer
 		test -d /home/linuxbrew/.linuxbrew && eval "\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-		export PS1="[dev] \${PS1}"
+		export PS1="[\$(hostname)] \${PS1}"
 		export PATH="\${HOME}/.bin:\${HOME}/.local/bin:\${PATH}"
 		EOS
 	EOF
